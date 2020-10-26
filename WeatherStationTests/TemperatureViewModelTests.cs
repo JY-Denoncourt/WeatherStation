@@ -1,15 +1,16 @@
-﻿using System;
+﻿using NuGet.Frameworks;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using WeatherApp.ViewModels;
 using Xunit;
+using Xunit.Sdk;
 
 namespace WeatherStationTests
 {
     public class TemperatureViewModelTests : IDisposable
     {
-
         // System Under Test
         // Utilisez ce membre dans les tests
         //TemperatureViewModel _sut = new TemperatureViewModel();
@@ -35,10 +36,8 @@ namespace WeatherStationTests
         {
             // Arrange
           
-
             // Act       
             var actual = TemperatureViewModel.CelsiusInFahrenheit(C);
-
 
             // Assert
             Assert.Equal(expected, actual);
@@ -67,7 +66,6 @@ namespace WeatherStationTests
         {
             // Arrange
 
-
             // Act       
             var actual = TemperatureViewModel.FahrenheitInCelsius(F);
 
@@ -77,21 +75,22 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region () T03 GetTempCommand -> null
+        #region (ok) T03 GetTempCommand -> null
         /// <summary>
         /// Lorsqu'exécuté GetTempCommand devrait lancer une NullException
+        /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
         /// </summary>
         /// <remarks>T03</remarks>
         [Fact]
         public void GetTempCommand_ExecuteIfNullService_ShouldThrowNullException()
         {
             // Arrange
+            TemperatureViewModel _sut = new TemperatureViewModel();
 
             // Act       
 
             // Assert
-
-            /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
+            Assert.Throws<NullReferenceException>(() => _sut.GetTempCommande.Execute(string.Empty));  
         }
         #endregion
 

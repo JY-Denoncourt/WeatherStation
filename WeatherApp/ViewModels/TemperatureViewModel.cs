@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using WeatherApp.Commands;
 using WeatherApp.Models;
+using WeatherApp.Services;
 
 namespace WeatherApp.ViewModels
 {
@@ -10,14 +12,15 @@ namespace WeatherApp.ViewModels
     {
         /// TODO : Ajoutez le code nécessaire pour réussir les tests et répondre aux requis du projet
         #region Variables---------------------------------------------------------------------------
-        //readonly TemperatureService customersDataService = new CustomersDataService();
+        public ITemperatureService TemperatureService;
+
         public TemperatureModel CurrentTemp { get; set; }
 
         #endregion
 
 
         #region Command----------------------------------------------------------------------------
-        DelegateCommand<string> GetTempCommand;
+        public DelegateCommand<string> GetTempCommande { get; set; }
 
         #endregion
 
@@ -25,7 +28,16 @@ namespace WeatherApp.ViewModels
         #region Constructeur-----------------------------------------------------------------------
         public TemperatureViewModel()
         {
-            GetTempCommand = new DelegateCommand<string>(GetTemp, CanGetTemp);
+            GetTempCommande = new DelegateCommand<string>(GetTemp, CanGetTemp);
+        }
+
+        #endregion
+
+
+        #region Methode Utiliataire----------------------------------------------------------------
+        public void SetTemperatureService(ITemperatureService service) {
+            TemperatureService = service;
+
         }
 
         #endregion
@@ -35,7 +47,8 @@ namespace WeatherApp.ViewModels
 
         public void GetTemp(String T)
         {
-           
+            if (TemperatureService == null)
+                throw new NullReferenceException();
         }
         
         public bool CanGetTemp(String T)
