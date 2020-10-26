@@ -15,13 +15,14 @@ namespace WeatherStationTests
         //TemperatureViewModel _sut = new TemperatureViewModel();
 
         #region (ok) T01 Conversion Celsius -> Fahrenheit
-        /// <summary>
-        /// Test la fonctionnalité de conversion de Celsius à Fahrenheit
-        /// TODO : git commit -a -m "T01 CelsisInFahrenheit_AlwaysReturnGoodValue : Done"
-        /// </summary>
-        /// <param name="C">Degré Celsius</param>
-        /// <param name="expected">Résultat attendu</param>
-        /// <remarks>T01</remarks>
+        // <summary>
+        // Test la fonctionnalité de conversion de Celsius à Fahrenheit
+        // TODO : git commit -a -m "T01 CelsisInFahrenheit_AlwaysReturnGoodValue : Done"
+        // </summary>
+        // <param name="C">Degré Celsius</param>
+        // <param name="expected">Résultat attendu</param>
+        // <remarks>T01</remarks>
+        
         [Theory]
         [InlineData(0, 32)]
         [InlineData(-40, -40)]
@@ -29,6 +30,7 @@ namespace WeatherStationTests
         [InlineData(-17.8, 0)]
         [InlineData(37, 98.6)]
         [InlineData(100, 212)]
+
         public void CelsisInFahrenheit_AlwaysReturnGoodValue(double C, double expected)
         {
             // Arrange
@@ -44,13 +46,15 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region () T02 Conversion Fahrenheit -> Celcius
-        /// <summary>
-        /// Test la fonctionnalité de conversion de Fahrenheit à Celsius
-        /// </summary>
-        /// <param name="F">Degré F</param>
-        /// <param name="expected">Résultat attendu</param>
-        /// <remarks>T02</remarks>
+        #region (ok) T02 Conversion Fahrenheit -> Celcius
+        // <summary>
+        // Test la fonctionnalité de conversion de Fahrenheit à Celsius
+        // TODO : git commit -a -m "T02 FahrenheitInCelsius_AlwaysReturnGoodValue : Done"
+        // </summary>
+        // <param name="F">Degré F</param>
+        // <param name="expected">Résultat attendu</param>
+        // <remarks>T02</remarks>
+        
         [Theory]
         [InlineData(32, 0)]
         [InlineData(-40, -40)]
@@ -58,15 +62,17 @@ namespace WeatherStationTests
         [InlineData(0, -17.8)]
         [InlineData(98.6, 37)]
         [InlineData(212, 100)]
+
         public void FahrenheitInCelsius_AlwaysReturnGoodValue(double F, double expected)
         {
             // Arrange
 
+
             // Act       
+            var actual = TemperatureViewModel.FahrenheitInCelsius(F);
 
             // Assert
-
-            /// TODO : git commit -a -m "T02 FahrenheitInCelsius_AlwaysReturnGoodValue : Done"
+            Assert.Equal(expected, actual);
         }
         #endregion
 

@@ -59,7 +59,7 @@ namespace WeatherApp.ViewModels
         {
             //𝑇𝑐 = (𝑇𝑓 − 32) × (5/9)
             
-            return ( (f - 32) * (5/9) );
+            return Math.Round(( (f - 32) * 5 / 9 ), 1);
         }
         #endregion
     }
