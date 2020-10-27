@@ -47,13 +47,13 @@ namespace WeatherApp.ViewModels
 
         public void GetTemp(String T)
         {
-            if (TemperatureService == null)
-                throw new NullReferenceException();
+            if (TemperatureService == null) throw new NullReferenceException();
         }
         
         public bool CanGetTemp(String T)
         {
-            return true;
+            if (TemperatureService == null) return false;
+            else return true;
         }
 
         #endregion

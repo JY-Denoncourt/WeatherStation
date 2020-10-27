@@ -75,7 +75,7 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region (ok) T03 GetTempCommand -> null
+        #region (ok) T03 GetTempCommand -> null si pas de service
         /// <summary>
         /// Lorsqu'exécuté GetTempCommand devrait lancer une NullException
         /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
@@ -95,21 +95,25 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region () T04 CanGetTemp -> false si service == null
+        #region (ok) T04 CanGetTemp -> false si pas de service
         /// <summary>
         /// La méthode CanGetTemp devrait retourner faux si le service est null
+        /// TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
         /// </summary>
         /// <remarks>T04</remarks>
         [Fact]
         public void CanGetTemp_WhenServiceIsNull_ReturnsFalse()
         {
             // Arrange
+            TemperatureViewModel _sut = new TemperatureViewModel();
 
             // Act       
+            var expected = false;
+            var actual = _sut.GetTempCommande.CanExecute(String.Empty);
 
             // Assert
+            Assert.Equal(expected, actual);
 
-            /// TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
         }
         #endregion
 
