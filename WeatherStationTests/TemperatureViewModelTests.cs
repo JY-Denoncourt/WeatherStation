@@ -121,18 +121,17 @@ namespace WeatherStationTests
 
 
         #region (ok) T05 CanGetTemp -> true si service instancier
-        /// <summary>
-        /// La méthode CanGetTemp devrait retourner vrai si le service est instancié
-        /// TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
-        /// </summary>
-        /// <remarks>T05</remarks>
+        // <summary>
+        // La méthode CanGetTemp devrait retourner vrai si le service est instancié
+        // TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
+        // </summary>
+        // <remarks>T05</remarks>
         [Fact]
         public void CanGetTemp_WhenServiceIsSet_ReturnsTrue()
         {
             // Arrange
             TemperatureViewModel _sut = new TemperatureViewModel();
             Mock<AuduinoTemperatureServiceTest> _mockService = new Mock<AuduinoTemperatureServiceTest>();
-
 
             // Act   
             var expected = true;
@@ -145,22 +144,25 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region () T06 TempratureService != null avec SetTemperatureService
-        /// <summary>
-        /// TemperatureService ne devrait plus être null lorsque SetTemperatureService
-        /// TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
-        /// </summary>
-        /// <remarks>T06</remarks>
+        #region (ok) T06 TempratureService != null avec SetTemperatureService
+        // <summary>
+        // TemperatureService ne devrait plus être null lorsque SetTemperatureService
+        // TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
+        // </summary>
+        // <remarks>T06</remarks>
         [Fact]
         public void SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull()
         {
             // Arrange
+            TemperatureViewModel _sut = new TemperatureViewModel();
+            Mock<AuduinoTemperatureServiceTest> _mockService = new Mock<AuduinoTemperatureServiceTest>();
 
             // Act       
+            _sut.SetTemperatureService(_mockService.Object);   //Setter un service par le Mock
+            var actual = _sut.TemperatureService;
 
             // Assert
-
-            
+            Assert.True(_sut.TemperatureService != null);
         }
         #endregion
 
@@ -168,6 +170,7 @@ namespace WeatherStationTests
         #region () T07 CurrentTemp valeur quand GetTempsCommand exec
         /// <summary>
         /// CurrentTemp devrait avoir une valeur lorsque GetTempCommand est exécutée
+        /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
         /// </summary>
         /// <remarks>T07</remarks>
         [Fact]
@@ -179,7 +182,7 @@ namespace WeatherStationTests
 
             // Assert
 
-            /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
+            
         }
         #endregion
 

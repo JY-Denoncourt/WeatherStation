@@ -45,9 +45,10 @@ namespace WeatherApp.ViewModels
 
         #region Methodes Command-------------------------------------------------------------------
 
-        public void GetTemp(String T)
+        public async void GetTemp(String T)
         {
             if (TemperatureService == null) throw new NullReferenceException();
+            else CurrentTemp = await TemperatureService.GetTempAsyn();
         }
         
         public bool CanGetTemp(String T)
