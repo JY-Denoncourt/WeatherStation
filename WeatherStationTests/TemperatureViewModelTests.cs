@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
+using WeatherApp.Models;
 using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
@@ -77,7 +79,7 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region (ok) T03 GetTempCommand -> null si pas de service
+        #region () T03 GetTempCommand -> null si pas de service
         // <summary>
         // Lorsqu'exécuté GetTempCommand devrait lancer une NullException
         // TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
@@ -131,7 +133,7 @@ namespace WeatherStationTests
         {
             // Arrange
             TemperatureViewModel _sut = new TemperatureViewModel();
-            Mock<AuduinoTemperatureServiceTest> _mockService = new Mock<AuduinoTemperatureServiceTest>();
+            Mock<ITemperatureService> _mockService = new Mock<ITemperatureService>();
 
             // Act   
             var expected = true;
@@ -155,11 +157,10 @@ namespace WeatherStationTests
         {
             // Arrange
             TemperatureViewModel _sut = new TemperatureViewModel();
-            Mock<AuduinoTemperatureServiceTest> _mockService = new Mock<AuduinoTemperatureServiceTest>();
+            Mock<ITemperatureService> _mockService = new Mock<ITemperatureService>();
 
             // Act       
             _sut.SetTemperatureService(_mockService.Object);   //Setter un service par le Mock
-            var actual = _sut.TemperatureService;
 
             // Assert
             Assert.NotNull(_sut.TemperatureService);
@@ -167,21 +168,35 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region () T07 CurrentTemp valeur quand GetTempsCommand execute
-        /// <summary>
-        /// CurrentTemp devrait avoir une valeur lorsque GetTempCommand est exécutée
-        /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
-        /// </summary>
-        /// <remarks>T07</remarks>
+        #region (ok) T07 CurrentTemp valeur quand GetTempsCommand execute
+        // <summary>
+        // CurrentTemp devrait avoir une valeur lorsque GetTempCommand est exécutée
+        // TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
+        // </summary>
+        // <remarks>T07</remarks>
         [Fact]
         public void GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass()
         {
             // Arrange
+            TemperatureViewModel _sut = new TemperatureViewModel();
+            //Mock<AuduinoTemperatureServiceTest> _mockService = new Mock<AuduinoTemperatureServiceTest>();
+            Mock<ITemperatureService> _mockService = new Mock<ITemperatureService>();
 
-            // Act       
+            // Act  
+            _mockService.Setup(x => x.GetTempAsync()).Returns(GetTestTempAsync());
+            _sut.SetTemperatureService(_mockService.Object);
+            _sut.GetTempCommande.Execute(string.Empty);
 
             // Assert
-            
+            Assert.NotNull(_sut.CurrentTemp);
+        }
+
+
+
+        private async Task<TemperatureModel> GetTestTempAsync()
+        {
+            TemperatureModel test =  new TemperatureModel() { DateTime = DateTime.Now, Temperature = 20.1 };
+            return test;
         }
         #endregion
 

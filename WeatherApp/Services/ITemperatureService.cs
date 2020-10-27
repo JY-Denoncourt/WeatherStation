@@ -8,6 +8,6 @@ namespace WeatherApp.Services
 {
     public interface ITemperatureService
     {
-        public Task<TemperatureModel>  GetTempAsyn();
+        public Task<TemperatureModel>  GetTempAsync();
     }
 }

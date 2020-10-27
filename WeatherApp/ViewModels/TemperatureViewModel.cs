@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using WeatherApp.Commands;
 using WeatherApp.Models;
 using WeatherApp.Services;
@@ -11,6 +12,7 @@ namespace WeatherApp.ViewModels
     public class TemperatureViewModel : BaseViewModel
     {
         // TODO : Ajoutez le code nécessaire pour réussir les tests et répondre aux requis du projet
+
         #region Variables---------------------------------------------------------------------------
         public ITemperatureService TemperatureService;
 
@@ -37,18 +39,25 @@ namespace WeatherApp.ViewModels
         #region Methode Utiliataire----------------------------------------------------------------
         public void SetTemperatureService(ITemperatureService service) {
             TemperatureService = service;
-
         }
 
+
+
+        public async Task GetTempAsync()
+        {
+            CurrentTemp = await TemperatureService.GetTempAsync();
+        }
         #endregion
 
 
         #region Methodes Command-------------------------------------------------------------------
 
-        public async void GetTemp(String T)
+        public void GetTemp(String T)
         {
-            if (TemperatureService == null) throw new NullReferenceException();
-            else CurrentTemp = await TemperatureService.GetTempAsyn();
+            if (TemperatureService == null)
+                throw new NullReferenceException();
+            else
+                GetTempAsync();  
         }
         
         public bool CanGetTemp(String T)

@@ -8,7 +8,7 @@ namespace WeatherApp.Services
 {
     class OpenWeatherService : ITemperatureService
     {
-        public Task<TemperatureModel> GetTempAsyn()
+        public Task<TemperatureModel> GetTempAsync()
         {
             return null;
         }

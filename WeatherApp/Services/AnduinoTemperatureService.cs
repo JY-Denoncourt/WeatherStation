@@ -9,7 +9,7 @@ namespace WeatherApp.Services
     public class AnduinoTemperatureService : ITemperatureService
     {
 
-        public Task<TemperatureModel> GetTempAsyn()
+        public Task<TemperatureModel> GetTempAsync()
         {
             return null;
         }
