@@ -144,7 +144,7 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region (ok) T06 TempratureService != null avec SetTemperatureService
+        #region (ok) T06 TempratureService != null avec SetTemperatureService execute
         // <summary>
         // TemperatureService ne devrait plus être null lorsque SetTemperatureService
         // TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
@@ -162,12 +162,12 @@ namespace WeatherStationTests
             var actual = _sut.TemperatureService;
 
             // Assert
-            Assert.True(_sut.TemperatureService != null);
+            Assert.NotNull(_sut.TemperatureService);
         }
         #endregion
 
 
-        #region () T07 CurrentTemp valeur quand GetTempsCommand exec
+        #region () T07 CurrentTemp valeur quand GetTempsCommand execute
         /// <summary>
         /// CurrentTemp devrait avoir une valeur lorsque GetTempCommand est exécutée
         /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
@@ -181,7 +181,6 @@ namespace WeatherStationTests
             // Act       
 
             // Assert
-
             
         }
         #endregion
