@@ -131,11 +131,12 @@ namespace WeatherStationTests
         {
             // Arrange
             TemperatureViewModel _sut = new TemperatureViewModel();
+            Mock<AuduinoTemperatureServiceTest> _mockService = new Mock<AuduinoTemperatureServiceTest>();
+
 
             // Act   
-            AnduinoTemperatureService service = new AnduinoTemperatureService();
             var expected = true;
-            _sut.SetTemperatureService(service);   //Setter un service
+            _sut.SetTemperatureService(_mockService.Object);   //Setter un service par le Mock
             var actual = _sut.GetTempCommande.CanExecute(String.Empty);
 
             // Assert
@@ -147,6 +148,7 @@ namespace WeatherStationTests
         #region () T06 TempratureService != null avec SetTemperatureService
         /// <summary>
         /// TemperatureService ne devrait plus être null lorsque SetTemperatureService
+        /// TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
         /// </summary>
         /// <remarks>T06</remarks>
         [Fact]
@@ -158,7 +160,7 @@ namespace WeatherStationTests
 
             // Assert
 
-            /// TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
+            
         }
         #endregion
 

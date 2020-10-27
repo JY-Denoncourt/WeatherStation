@@ -8,6 +8,7 @@ namespace WeatherApp.Services
 {
     public class AnduinoTemperatureService : ITemperatureService
     {
+
         public Task<TemperatureModel> GetTempAsyn()
         {
             return null;
