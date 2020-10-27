@@ -6,7 +6,7 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Services
 {
-    class AnduinoTemperatureService : ITemperatureService
+    public class AnduinoTemperatureService : ITemperatureService
     {
         public Task<TemperatureModel> GetTempAsyn()
         {

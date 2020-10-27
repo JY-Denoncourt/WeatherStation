@@ -1,8 +1,10 @@
-﻿using NuGet.Frameworks;
+﻿using Moq;
+using NuGet.Frameworks;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
 using Xunit.Sdk;
@@ -76,11 +78,11 @@ namespace WeatherStationTests
 
 
         #region (ok) T03 GetTempCommand -> null si pas de service
-        /// <summary>
-        /// Lorsqu'exécuté GetTempCommand devrait lancer une NullException
-        /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
-        /// </summary>
-        /// <remarks>T03</remarks>
+        // <summary>
+        // Lorsqu'exécuté GetTempCommand devrait lancer une NullException
+        // TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
+        // </summary>
+        // <remarks>T03</remarks>
         [Fact]
         public void GetTempCommand_ExecuteIfNullService_ShouldThrowNullException()
         {
@@ -96,11 +98,11 @@ namespace WeatherStationTests
 
 
         #region (ok) T04 CanGetTemp -> false si pas de service
-        /// <summary>
-        /// La méthode CanGetTemp devrait retourner faux si le service est null
-        /// TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
-        /// </summary>
-        /// <remarks>T04</remarks>
+        // <summary>
+        // La méthode CanGetTemp devrait retourner faux si le service est null
+        // TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
+        // </summary>
+        // <remarks>T04</remarks>
         [Fact]
         public void CanGetTemp_WhenServiceIsNull_ReturnsFalse()
         {
@@ -118,21 +120,26 @@ namespace WeatherStationTests
         #endregion
 
 
-        #region () T05 CanGetTemp -> true si service instancier
+        #region (ok) T05 CanGetTemp -> true si service instancier
         /// <summary>
         /// La méthode CanGetTemp devrait retourner vrai si le service est instancié
+        /// TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
         /// </summary>
         /// <remarks>T05</remarks>
         [Fact]
         public void CanGetTemp_WhenServiceIsSet_ReturnsTrue()
         {
             // Arrange
+            TemperatureViewModel _sut = new TemperatureViewModel();
 
-            // Act       
+            // Act   
+            AnduinoTemperatureService service = new AnduinoTemperatureService();
+            var expected = true;
+            _sut.SetTemperatureService(service);   //Setter un service
+            var actual = _sut.GetTempCommande.CanExecute(String.Empty);
 
             // Assert
-
-            /// TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
+            Assert.Equal(expected, actual);
         }
         #endregion
 
