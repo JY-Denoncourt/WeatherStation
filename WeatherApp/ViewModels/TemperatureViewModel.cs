@@ -43,7 +43,7 @@ namespace WeatherApp.ViewModels
 
 
 
-        public async Task GetTempAsync()
+        public async Task GetTempAsync(String T)
         {
             CurrentTemp = await TemperatureService.GetTempAsync();
         }
@@ -57,7 +57,7 @@ namespace WeatherApp.ViewModels
             if (TemperatureService == null)
                 throw new NullReferenceException();
             else
-                GetTempAsync();  
+                GetTempAsync(string.Empty);  
         }
         
         public bool CanGetTemp(String T)
